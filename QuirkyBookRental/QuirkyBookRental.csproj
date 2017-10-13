@@ -205,6 +205,7 @@
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IndividualButtonPartial.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -272,6 +273,8 @@
     <Content Include="Views\Genre\Create.cshtml" />
     <Content Include="Views\Shared\_BackToListButtonPartial.cshtml" />
     <Content Include="Views\Shared\_CreateButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_IndividualButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_TableButtonPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

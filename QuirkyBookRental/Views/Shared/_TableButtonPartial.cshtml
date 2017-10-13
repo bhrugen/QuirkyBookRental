@@ -1,0 +1,43 @@
+﻿@model QuirkyBookRental.Models.IndividualButtonPartial
+@using QuirkyBookRental.Models
+
+<td style="width:400px;">
+    <div class="btn-group" role="group">
+        @Html.Partial("_IndividualButtonPartial",
+           new IndividualButtonPartial
+           {
+               Action = "Edit",
+               ButtonType = "btn-primary",
+               Glyph = "pencil",
+               Text = "Edit Button",
+               GenreId = Model.GenreId,
+               BookId = Model.BookId,
+               CustomerId = Model.CustomerId,
+               MembershipTypeId = Model.MembershipTypeId
+           })
+        @Html.Partial("_IndividualButtonPartial",
+           new IndividualButtonPartial
+           {
+               Action = "Details",
+               ButtonType = "btn-success",
+               Glyph = "list",
+               Text = "Details Button",
+               GenreId = Model.GenreId,
+               BookId = Model.BookId,
+               CustomerId = Model.CustomerId,
+               MembershipTypeId = Model.MembershipTypeId
+           })
+        @Html.Partial("_IndividualButtonPartial",
+           new IndividualButtonPartial
+           {
+               Action = "Delete",
+               ButtonType = "btn-danger",
+               Glyph = "trash",
+               Text = "Delete Button",
+               GenreId = Model.GenreId,
+               BookId = Model.BookId,
+               CustomerId = Model.CustomerId,
+               MembershipTypeId = Model.MembershipTypeId
+           })
+    </div>
+</td>
