@@ -4,7 +4,24 @@
 }
 
 <h2>Genre</h2>
-<a type="button" class="btn-primary btn btn-sm" href="@Url.Action("Create")">
-    <span class="glyphicon glyphicon-plus"></span>
-    <span>Create New</span>
-</a>
+
+@Html.Partial("_CreateButtonPartial")
+
+<table class="table table-condensed table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(m=>m.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m=>item.Name)
+            </td>
+            <td>Edit | Details | Delete</td>
+        </tr>
+    }
+</table>
