@@ -9,22 +9,25 @@
     <div>
         <h3>Are you sure you want to delete this genre?</h3>
         <hr />
-        <fieldset disabled>
-            <div class="row">
-                <div class="col-md-2">
-                    @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label" })
+        <div class="form-border">
+            <fieldset disabled>
+                <div class="row">
+                    <div class="col-md-2">
+                        @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    </div>
                 </div>
-                <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                </div>
-            </div>
-        </fieldset>
+            </fieldset>
+        </div>
 
 
     </div>
-    @Html.Partial("_BackToListButtonPartial")
-    <input type="submit" value="Delete" class="btn btn-sm btn-danger" />
-    <div>
+        <br />
 
-    </div>
+        <div>
+            @Html.Partial("_BackToListButtonPartial")
+            <input type="submit" value="Delete" class="btn btn-sm btn-danger" />
+        </div>
 }

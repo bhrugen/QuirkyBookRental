@@ -1,4 +1,4 @@
-﻿body {
+﻿ body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -20,5 +20,18 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 350px;
+}
+
+.table-header{
+    background-color:#cee7ff;
+    color:#03417D;
+}
+
+.form-border{
+    border: 1px solid #bbb9b9;
+    border-radius:5px;
+    padding-top:20px;
+    padding-bottom:10px;
+    padding-left:10px;
 }

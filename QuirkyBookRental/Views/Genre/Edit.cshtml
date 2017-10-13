@@ -13,13 +13,13 @@
     <h3> Edit Genre</h3>
     <hr />
 
-    <div>
-        @Html.HiddenFor(m=>m.Id)
+    <div class="form-border">
+        @Html.HiddenFor(m => m.Id)
         <div class="form-group">
-            @Html.LabelFor(m=>m.Name,htmlAttributes: new { @class="control-label col-md-2"})
+            @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(m=>m.Name, new { htmlAttributes = new { @class="form-control"} })
-                @Html.ValidationMessageFor(m=>m.Name,"",new { @class="text-danger"})
+                @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
