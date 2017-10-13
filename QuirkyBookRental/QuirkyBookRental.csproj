@@ -277,6 +277,8 @@
     <Content Include="Views\Shared\_TableButtonPartial.cshtml" />
     <Content Include="Views\Genre\Details.cshtml" />
     <Content Include="Views\Shared\_EditButtonPartial.cshtml" />
+    <Content Include="Views\Genre\Edit.cshtml" />
+    <Content Include="Views\Genre\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
