@@ -1,0 +1,24 @@
+﻿@model QuirkyBookRental.Models.Genre
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h3>Genre Details</h3>
+    <hr />
+    <fieldset disabled>
+        <div class="row" style="padding-bottom:5px;padding-top:5px;">
+            <div class="col-md-2">
+                @Html.LabelFor(m=>m.Name, htmlAttributes: new { @class="control-label"})
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(m=>m.Name, new { @class="form-control"})
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+<br />
+<p>
+    @Html.Partial("_BackToListButtonPartial")
+</p>
