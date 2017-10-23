@@ -201,6 +201,14 @@
     <Compile Include="Migrations\201710020037236_AddBookAndGenreClass.Designer.cs">
       <DependentUpon>201710020037236_AddBookAndGenreClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710231651487_addMembershipTypeTable.cs" />
+    <Compile Include="Migrations\201710231651487_addMembershipTypeTable.Designer.cs">
+      <DependentUpon>201710231651487_addMembershipTypeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710231652388_seedMembershipTypeTable.cs" />
+    <Compile Include="Migrations\201710231652388_seedMembershipTypeTable.Designer.cs">
+      <DependentUpon>201710231652388_seedMembershipTypeTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book.cs" />
@@ -208,6 +216,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndividualButtonPartial.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\BookViewModel.cs" />
@@ -311,6 +320,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201710020037236_AddBookAndGenreClass.resx">
       <DependentUpon>201710020037236_AddBookAndGenreClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710231651487_addMembershipTypeTable.resx">
+      <DependentUpon>201710231651487_addMembershipTypeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710231652388_seedMembershipTypeTable.resx">
+      <DependentUpon>201710231652388_seedMembershipTypeTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -119,3 +119,5 @@ C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\obj\Debug\Quirky
 C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBookRental.pdb
 C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBookRental.Migrations.AddBookAndGenreClass.resources
 C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBookRental.csproj.GenerateResource.Cache
+C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBookRental.Migrations.addMembershipTypeTable.resources
+C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBookRental.Migrations.seedMembershipTypeTable.resources
