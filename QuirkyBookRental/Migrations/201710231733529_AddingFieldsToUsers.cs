@@ -20,7 +20,7 @@ namespace QuirkyBookRental.Migrations
             DropColumn("dbo.AspNetUsers", "MembershipTypeId");
             DropColumn("dbo.AspNetUsers", "Disable");
             DropColumn("dbo.AspNetUsers", "BirthDate");
-            DropColumn("dbo.AspNetUsers", "Phone");
+            DropColumn("dbo.AspNetUsers", "Phone"); 
             DropColumn("dbo.AspNetUsers", "LastName");
             DropColumn("dbo.AspNetUsers", "FirstName");
         }

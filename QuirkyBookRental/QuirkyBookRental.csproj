@@ -222,9 +222,11 @@
     <Compile Include="Models\IndividualButtonPartial.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
+    <Compile Include="Models\ThumbnailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\BookViewModel.cs" />
+    <Compile Include="ViewModel\ThumbnailBoxViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -234,6 +236,7 @@
     <Content Include="Content\Images\jungle.jpg" />
     <Content Include="Content\Images\Spider.png" />
     <Content Include="Content\Images\Sunset.png" />
+    <Content Include="Content\thumbnail.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -310,6 +313,7 @@
     <Content Include="Views\MembershipType\Details.cshtml" />
     <Content Include="Views\MembershipType\Edit.cshtml" />
     <Content Include="Views\MembershipType\Index.cshtml" />
+    <Content Include="Views\Shared\_ThumbnailAreaPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
