@@ -32,9 +32,9 @@ namespace QuirkyBookRental.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -64,15 +64,30 @@ namespace QuirkyBookRental.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
-            var model = new IndexViewModel
+
+            using (var db = ApplicationDbContext.Create())
             {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-            };
-            return View(model);
+
+                var userInDb = db.Users.First(u => u.Id.Equals(userId));
+
+                var model = new IndexViewModel
+                {
+                    HasPassword = HasPassword(),
+                    PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
+                    TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
+                    Logins = await UserManager.GetLoginsAsync(userId),
+                    BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                    BirthDate=userInDb.BirthDate,
+                    Email = userInDb.Email,
+                    Id = userInDb.Id,
+                    FirstName = userInDb.FirstName,
+                    LastName = userInDb.LastName,
+                    MembershipTypeId = userInDb.MembershipTypeId,
+                    MembershipTypes=db.MembershipTypes.ToList(),
+                    Phone = userInDb.Phone
+                };
+                return View(model);
+            }
         }
 
         //
@@ -333,7 +348,7 @@ namespace QuirkyBookRental.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -384,6 +399,6 @@ namespace QuirkyBookRental.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }
