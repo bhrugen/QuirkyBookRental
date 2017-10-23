@@ -139,7 +139,15 @@ namespace QuirkyBookRental.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            using (var db = ApplicationDbContext.Create())
+            {
+                RegisterViewModel newUser = new RegisterViewModel
+                {
+                    MembershipTypes = db.MembershipTypes.ToList(),
+                    BirthDate=DateTime.Now
+                };
+                return View(newUser);
+            }
         }
 
         //
