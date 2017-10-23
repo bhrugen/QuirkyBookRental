@@ -1,0 +1,52 @@
+﻿@model QuirkyBookRental.Models.MembershipType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Membership Details</h2>
+
+<div>
+    <hr />
+    <fieldset disabled>
+        <div class="form-border">
+            <div class="row" style="padding-bottom:5px; padding-top:5px;">
+                <div class="col-sm-2">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row" style="padding-bottom:5px; padding-top:5px;">
+                <div class="col-sm-2">
+                    @Html.LabelFor(model => model.SignUpFee, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.SignUpFee, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row" style="padding-bottom:5px; padding-top:5px;">
+                <div class="col-sm-2">
+                    @Html.LabelFor(model => model.ChargeRateOneMonth, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.ChargeRateOneMonth, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row" style="padding-bottom:5px; padding-top:5px;">
+                <div class="col-sm-2">
+                    @Html.LabelFor(model => model.ChargeRateSixMonth, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.ChargeRateSixMonth, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <br />
+    <div class="form-actions no-color">
+        @Html.Partial("_EditButtonPartial", Model.Id)
+        @Html.Partial("_BackToListButtonPartial")
+    </div>
+</div>
