@@ -77,17 +77,74 @@ namespace QuirkyBookRental.Controllers
                     TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                     Logins = await UserManager.GetLoginsAsync(userId),
                     BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                    BirthDate=userInDb.BirthDate,
+                    BirthDate = userInDb.BirthDate,
                     Email = userInDb.Email,
                     Id = userInDb.Id,
                     FirstName = userInDb.FirstName,
                     LastName = userInDb.LastName,
                     MembershipTypeId = userInDb.MembershipTypeId,
-                    MembershipTypes=db.MembershipTypes.ToList(),
+                    MembershipTypes = db.MembershipTypes.ToList(),
                     Phone = userInDb.Phone
                 };
                 return View(model);
             }
+        }
+
+        public async Task<ActionResult> Edit()
+        {
+            var userId = User.Identity.GetUserId();
+
+            using (var db = ApplicationDbContext.Create())
+            {
+
+                var userInDb = db.Users.First(u => u.Id.Equals(userId));
+
+                var model = new IndexViewModel
+                {
+                    HasPassword = HasPassword(),
+                    PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
+                    TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
+                    Logins = await UserManager.GetLoginsAsync(userId),
+                    BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                    BirthDate = userInDb.BirthDate,
+                    Email = userInDb.Email,
+                    Id = userInDb.Id,
+                    FirstName = userInDb.FirstName,
+                    LastName = userInDb.LastName,
+                    MembershipTypeId = userInDb.MembershipTypeId,
+                    MembershipTypes = db.MembershipTypes.ToList(),
+                    Phone = userInDb.Phone
+                };
+                return View(model);
+            }
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(IndexViewModel model)
+        {
+            using (var db = ApplicationDbContext.Create())
+            {
+                if (ModelState.IsValid)
+                {
+                    var userInDb = db.Users.First(u => u.Id.Equals(model.Id));
+                    userInDb.FirstName = model.FirstName;
+                    userInDb.LastName = model.LastName;
+                    userInDb.Phone = model.Phone;
+                    userInDb.MembershipTypeId = model.MembershipTypeId;
+                    userInDb.BirthDate = model.BirthDate;
+
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    model.MembershipTypes = db.MembershipTypes.ToList();
+                }
+            }
+
+            return View(model);
         }
 
         //

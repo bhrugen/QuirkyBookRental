@@ -1,0 +1,79 @@
+﻿@model QuirkyBookRental.Models.IndexViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h3>Change your account settings</h3>
+        <hr />
+
+        @Html.ValidationSummary(true,"",new { @class="text-danger" })
+        @Html.HiddenFor(m=>m.Id)
+
+        <div class="form-horizontal">
+            <div class="form-border">
+              
+                
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(m=>m.FirstName,"",new { @class="text-danger"})
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.BirthDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.BirthDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.BirthDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                <fieldset disabled>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.MembershipTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(m => m.MembershipTypeId, new SelectList(Model.MembershipTypes, "id", "name"), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.MembershipTypeId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </fieldset>
+                <br />
+                <div class="col-md-offset-2">
+                    <a type="button" class="btn btn-sm btn-primary" href="@Url.Action("Index")">
+                        <span class="glyphicon glyphicon-list"></span>
+                        <span>Back To Profile</span>
+                    </a>
+
+                    <input type="submit" value="Update Details" class="btn btn-sm btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+}

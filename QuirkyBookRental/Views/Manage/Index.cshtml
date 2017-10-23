@@ -50,6 +50,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
                     @Html.LabelFor(m => m.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(m => m.Phone, new { htmlAttributes = new { @class = "form-control" } })
