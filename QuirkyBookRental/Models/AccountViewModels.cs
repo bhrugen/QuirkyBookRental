@@ -82,7 +82,7 @@ namespace QuirkyBookRental.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        public int? Disabled { get; set; }
+        public bool Disabled { get; set; }
         public ICollection<MembershipType> MembershipTypes { get; set; }
 
         [Required]
