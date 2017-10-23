@@ -8,7 +8,7 @@ namespace QuirkyBookRental.Extensions
 {
     public static class ThumbnailExtensions
     {
-        public static IEnumerable<ThumbnailModel> GetBookThumbnail(this List<ThumbnailModel> thumbnails, ApplicationDbContext db = null)
+        public static IEnumerable<ThumbnailModel> GetBookThumbnail(this List<ThumbnailModel> thumbnails, ApplicationDbContext db = null, string search = null)
         {
             try
             {
@@ -23,12 +23,17 @@ namespace QuirkyBookRental.Extensions
                                   ImageUrl = b.ImageUrl,
                                   Link = "/BookDetail/Index/" + b.Id,
                               }).ToList();
+
+                if(search!=null)
+                {
+                    return thumbnails.Where(t => t.Title.ToLower().Contains(search.ToLower())).OrderBy(t => t.Title);
+                }
             }
             catch(Exception ex)
             {
 
             }
-            return thumbnails.OrderBy(b => b.Title);
+            return thumbnails.OrderBy(t => t.Title);
 
         }
     }
