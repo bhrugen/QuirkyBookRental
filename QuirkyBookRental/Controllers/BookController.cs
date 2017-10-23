@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuirkyBookRental.Models;
+using QuirkyBookRental.ViewModel;
 
 namespace QuirkyBookRental.Controllers
 {
@@ -33,14 +34,24 @@ namespace QuirkyBookRental.Controllers
             {
                 return HttpNotFound();
             }
-            return View(book);
+
+            var model = new BookViewModel
+            {
+                Book = book,
+                Genre = db.Genres.ToList()
+            };
+            return View(model);
         }
 
         // GET: Book/Create
         public ActionResult Create()
         {
-            ViewBag.GenreId = new SelectList(db.Genres, "Id", "Name");
-            return View();
+            var genre = db.Genres.ToList();
+            var model = new BookViewModel
+            {
+                Genre = genre
+            };
+            return View(model);
         }
 
         // POST: Book/Create
@@ -48,7 +59,7 @@ namespace QuirkyBookRental.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ISBN,Title,Author,Description,ImageUrl,Avaibility,Price,DateAdded,GenreId,Publisher,PublicationDate,Pages,ProductDimensions")] Book book)
+        public ActionResult Create(Book book)
         {
             if (ModelState.IsValid)
             {
