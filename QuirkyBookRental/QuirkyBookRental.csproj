@@ -210,6 +210,10 @@
     <Compile Include="Migrations\201710231652388_seedMembershipTypeTable.Designer.cs">
       <DependentUpon>201710231652388_seedMembershipTypeTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710231733529_AddingFieldsToUsers.cs" />
+    <Compile Include="Migrations\201710231733529_AddingFieldsToUsers.Designer.cs">
+      <DependentUpon>201710231733529_AddingFieldsToUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book.cs" />
@@ -332,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710231652388_seedMembershipTypeTable.resx">
       <DependentUpon>201710231652388_seedMembershipTypeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710231733529_AddingFieldsToUsers.resx">
+      <DependentUpon>201710231733529_AddingFieldsToUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
