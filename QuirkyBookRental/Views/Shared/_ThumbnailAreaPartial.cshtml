@@ -1,16 +1,14 @@
 ﻿@model QuirkyBookRental.ViewModel.ThumbnailBoxViewModel
 
 <div class="row">
-    @if(Model.Thumbnails !=null)
+    @if (Model.Thumbnails != null)
     {
-        foreach(var thumbnail in Model.Thumbnails)
+        foreach (var thumbnail in Model.Thumbnails)
         {
             <div class="col-xs-6 col-md-3">
                 <div class="thumbnail">
-                    <div class="thumbnail-container">
-                        <div class="thumbnail-img-container">
-                            <a href="@thumbnail.Link"><img class="thumbnail-img" src="@thumbnail.ImageUrl" alt="" /></a>
-                        </div>
+                    <div class="thumbnail-img-container">
+                        <a href="@thumbnail.Link"><img class="thumbnail-img" src="@thumbnail.ImageUrl" alt="" /></a>
                     </div>
                     <div class="caption">
                         <h3><a href="@thumbnail.Link">@thumbnail.Title</a></h3>
