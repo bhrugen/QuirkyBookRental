@@ -134,6 +134,71 @@
                     source: bookTitle
                 });
         });
+
+
+        $('#btnAvailibility').click(function () {
+            var isbn = document.getElementById("bookISBN").value;
+            var email = document.getElementById("email").value;
+            var rentalDuration = document.getElementById("ddlRentalDuration").value;
+
+            $.ajax({
+                url: '/api/BookAPI?type=avail&isbn=' + isbn,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    $('#lblAvaibility').text(data + ' available')
+                    if (data > 0)
+                    {
+                        document.getElementById('btnSubmit').style.display = '';
+                    }
+                    else
+                    {
+                        document.getElementById('btnSubmit').value = "Not Available";
+                        document.getElementById('btnSubmit').style.display = '';
+                        document.getElementById('btnSubmit').disabled = true;
+                        document.getElementById('btnSubmit').classList.remove('btn-success');
+                        document.getElementById('btnSubmit').classList.add('btn-danger');
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown)
+                {
+
+                }
+            });
+
+            $.ajax({
+                url: '/api/BookAPI?type=price&isbn=' + isbn + '&rentalDuration=' + rentalDuration + '&email=' + email,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    $('#lblRentalPrice').text(data)
+                },
+                error: function (xhr, textStatus, errorThrown) {
+
+                }
+            });
+
+            $.ajax({
+                url: '/api/UsersAPI?type=name&query=' + email,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    var fields = data.split(';');
+
+                    $('#firstName').text(fields[0])
+
+                    var birthDate = fields[1].split(' ')
+                    $('#birthDate').text(birthDate[0])
+                    document.getElementById("btnAvailibility").style.display = 'none';
+                    document.getElementById("nameAndDob").style.display = '';
+
+                },
+                error: function (xhr, textStatus, errorThrown) {
+
+                }
+            });
+
+        });
     </script>
 
 
