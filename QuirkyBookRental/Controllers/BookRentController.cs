@@ -30,7 +30,7 @@ namespace QuirkyBookRental.Controllers
                 };
                 return View(model);
             }
-            return View();
+            return View(new BookRentalViewModel());
         }
 
         [HttpPost]
