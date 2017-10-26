@@ -17,6 +17,7 @@ namespace QuirkyBookRental.Models
         public bool Disable { get; set; }
         public int MembershipTypeId { get; set; }
 
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -30,6 +31,7 @@ namespace QuirkyBookRental.Models
     {
         public DbSet<Book> Books { get; set; }
         public DbSet<Genre> Genres { get; set; }
+        public DbSet<BookRent> BookRental { get; set; }
         public DbSet<MembershipType> MembershipTypes { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
