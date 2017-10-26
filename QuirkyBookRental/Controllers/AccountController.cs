@@ -145,7 +145,7 @@ namespace QuirkyBookRental.Controllers
             {
                 RegisterViewModel newUser = new RegisterViewModel
                 {
-                    MembershipTypes = db.MembershipTypes.ToList(),
+                    MembershipTypes = db.MembershipTypes.Where(m=>!m.Name.ToLower().Equals(SD.AdminUserRole.ToLower())).ToList(),
                     BirthDate=DateTime.Now
                 };
                 return View(newUser);
