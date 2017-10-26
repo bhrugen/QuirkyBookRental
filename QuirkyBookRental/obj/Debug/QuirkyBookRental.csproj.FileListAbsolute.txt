@@ -142,3 +142,4 @@ C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\bin\Google.Apis.
 C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\bin\System.Net.Http.Formatting.xml
 C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\bin\System.Web.Http.xml
 C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBookRental.Migrations.AddBookRentalToDatabase.resources
+C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBookRental.Migrations.AddBookRentalToDatabaseCheck.resources

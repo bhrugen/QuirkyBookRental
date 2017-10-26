@@ -55,6 +55,7 @@ namespace QuirkyBookRental.Controllers
                 ImageUrl=bookModel.ImageUrl,
                 Pages=bookModel.Pages,
                 Price=bookModel.Price,
+                Publisher=bookModel.Publisher,
                 PublicationDate=bookModel.PublicationDate,
                 ProductDimensions=bookModel.ProductDimensions,
                 Title=bookModel.Title,
