@@ -22,6 +22,7 @@ namespace QuirkyBookRental
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/BookDetail.css",
                       "~/Content/thumbnail.css",
                       "~/Content/social.css",
                       "~/Content/site.css"));

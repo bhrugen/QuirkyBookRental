@@ -11,14 +11,14 @@
 
     <div class="row">
         @* Book Image *@
-        <div class="col-sm-3 col-xs-4">
+        <div class="col-sm-3 col-xs-4 image-book">
             <img class="thumbnail-img" src="@Model.ImageUrl" alt="" style="width:100%;height:auto;padding:10px;"/>
         </div>
-
+         
 
         @* Book Details(Title/Author/Description) *@
-        <div class="col-sm-6 col-xs-8">
-            <div>
+        <div class="col-sm-6 col-xs-8 content-book-main">
+            <div class="content-book-title-author">
                 <h2><b>@Model.Title</b></h2>
                 <h5>@Model.Author</h5>
             </div>
@@ -30,7 +30,7 @@
 
 
         @* Rental Price and other book details *@
-        <div class="col-sm-3 col-xs-12">
+        <div class="col-sm-3 col-xs-12 content-book-product-details">
             <div>
                 @{
                     List<SelectListItem> listItem = new List<SelectListItem>();
@@ -115,7 +115,7 @@
                         </div>
 
 
-            <h4>Product Details</h4>
+            <h4 class="product-details-heading">Product Details</h4>
             <dl>
                 <dt>
                     @Html.DisplayNameFor(m=>m.ISBN)
