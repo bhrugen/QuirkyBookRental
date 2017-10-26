@@ -132,7 +132,6 @@ namespace QuirkyBookRental.Controllers
                     userInDb.FirstName = model.FirstName;
                     userInDb.LastName = model.LastName;
                     userInDb.Phone = model.Phone;
-                    userInDb.MembershipTypeId = model.MembershipTypeId;
                     userInDb.BirthDate = model.BirthDate;
 
                     db.SaveChanges();

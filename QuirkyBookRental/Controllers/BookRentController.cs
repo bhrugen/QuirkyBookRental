@@ -1,4 +1,5 @@
-﻿using QuirkyBookRental.Models;
+﻿using Microsoft.AspNet.Identity;
+using QuirkyBookRental.Models;
 using QuirkyBookRental.Utility;
 using QuirkyBookRental.ViewModel;
 using System;
@@ -123,7 +124,47 @@ namespace QuirkyBookRental.Controllers
         // GET: BookRent
         public ActionResult Index()
         {
-            return View();
+            string userid = User.Identity.GetUserId();
+
+            var model = from br in db.BookRental
+                        join b in db.Books on br.BookId equals b.Id
+                        join u in db.Users on br.UserId equals u.Id
+                        select new BookRentalViewModel
+                        {
+                            Id=br.Id,
+                            BookId = b.Id,
+                            RentalPrice = br.RentalPrice,
+                            Price = b.Price,
+                            Pages = b.Pages,
+                            FirstName = u.FirstName,
+                            LastName = u.LastName,
+                            BirthDate = u.BirthDate,
+                            ScheduledEndDate = br.ScheduledEndDate,
+                            Author = b.Author,
+                            Avaibility = b.Avaibility,
+                            DateAdded = b.DateAdded,
+                            Description = b.Description,
+                            Email = u.Email,
+                            GenreId = b.GenreId,
+                            Genre = db.Genres.Where(g => g.Id.Equals(b.GenreId)).FirstOrDefault(),
+                            ISBN = b.ISBN,
+                            ImageUrl = b.ImageUrl,
+                            ProductDimensions = b.ProductDimensions,
+                            PublicationDate = b.PublicationDate,
+                            Publisher = b.Publisher,
+                            RentalDuration = br.RentalDuration,
+                            Status = br.Status.ToString(),
+                            Title = b.Title,
+                            UserId = u.Id
+                            
+                        };
+
+            if(!User.IsInRole(SD.AdminUserRole))
+            {
+                model = model.Where(u=>u.UserId.Equals(userid))
+            }
+
+            return View(model.ToList());
         }
 
         protected override void Dispose(bool disposing)
