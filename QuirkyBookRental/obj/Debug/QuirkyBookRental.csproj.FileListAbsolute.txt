@@ -143,3 +143,6 @@ C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\bin\System.Net.H
 C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\bin\System.Web.Http.xml
 C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBookRental.Migrations.AddBookRentalToDatabase.resources
 C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBookRental.Migrations.AddBookRentalToDatabaseCheck.resources
+C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\bin\System.Web.Http.WebHost.dll
+C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\bin\System.Web.Http.WebHost.xml
+C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBookRental.Migrations.updateEndDate.resources

@@ -17,8 +17,8 @@ namespace QuirkyBookRental.Models
         [Required]
         public int BookId { get; set; }
         public DateTime? StartDate { get; set; }
-        public DateTime? ScheduledStartDate { get; set; }
-        public DateTime? ActualStartDate { get; set; }
+        public DateTime? ScheduledEndDate { get; set; }
+        public DateTime? ActualEndDate { get; set; }
 
         public double? AdditionalCharge { get; set; }
 
