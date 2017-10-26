@@ -1,0 +1,65 @@
+﻿@model IEnumerable<QuirkyBookRental.ViewModel.UserViewModel>
+@using QuirkyBookRental.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Manage Users</h2>
+
+@Html.Partial("_CreateButtonPartial")
+<br />
+<br />
+<table class="table table-condensed table-hover">
+    <tr class="table-header">
+        <th>
+            @Html.DisplayNameFor(m => m.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Disabled)
+        </th>
+        <th></th>
+        <th> 
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.BirthDate)
+            </td>
+            <td>
+                @Html.CheckBoxFor(m => item.Disabled,new { @disabled="disabled"})
+            </td>
+            <td>
+                @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { UserId = item.Id })
+            </td>
+        </tr>
+    }
+</table>
