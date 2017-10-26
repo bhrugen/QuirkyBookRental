@@ -231,8 +231,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\Api\BookAPIController.cs" />
-    <Compile Include="Controllers\Api\UsersAPIController.cs" />
+    <Compile Include="Controllers\API\BookAPIController.cs" />
+    <Compile Include="Controllers\API\UsersAPIController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\BookDetailController.cs" />
     <Compile Include="Controllers\BookRentController.cs" />

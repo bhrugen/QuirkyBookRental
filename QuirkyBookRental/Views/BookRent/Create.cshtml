@@ -16,26 +16,26 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.Email, new { id = "email", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.Title, new { id = "bookTitle", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.ISBN, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.ISBN, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.ISBN, new { id = "bookISBN", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ISBN, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        @{ 
+        @{
             List<SelectListItem> listItem = new List<SelectListItem>();
             listItem.Add(new SelectListItem
             {
@@ -52,7 +52,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RentalDuration, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.RentalDuration,listItem, new {id="ddlRentalDuration", @class = "form-control" } )
+                @Html.DropDownListFor(model => model.RentalDuration, listItem, new { id = "ddlRentalDuration", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RentalDuration, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -62,7 +62,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.Label(" ", new {id="firstName",style="width:350px;", @class="form-control"})
+                    @Html.Label(" ", new { id = "firstName", style = "width:350px;", @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
@@ -93,5 +93,48 @@
         </div>
 
     </div>
-}
+            }
 
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            var customers = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('email'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                // `states` is an array of state names defined in "The Basics"
+                remote: {
+                    url: '/API/UsersAPI?type=email&query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#email').typeahead({highlight: true,minLength: 3},
+                {
+                    name: 'customers',
+                    display: 'Email',
+                    source: customers
+                });
+
+
+            var bookTitle = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('Title'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                // `states` is an array of state names defined in "The Basics"
+                remote: {
+                    url: '/API/BookAPI?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#bookTitle').typeahead({ highlight: true, minLength: 3 },
+                {
+                    name: 'bookTitles',
+                    display: 'Title',
+                    source: bookTitle
+                });
+        });
+    </script>
+
+
+}
