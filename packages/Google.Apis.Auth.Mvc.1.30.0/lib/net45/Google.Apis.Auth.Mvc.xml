@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Google.Apis.Auth.Mvc</name>
+    </assembly>
+    <members>
+        <member name="T:Google.Apis.Auth.OAuth2.Mvc.AuthorizationCodeMvcApp">
+            <summary>
+            Thread-safe OAuth 2.0 authorization code flow for a MVC web application that persists end-user credentials.
+            </summary>
+        </member>
+        <member name="P:Google.Apis.Auth.OAuth2.Mvc.AuthorizationCodeMvcApp.Controller">
+            <summary>Gets the controller which is the owner of this authorization code MVC app instance.</summary>
+        </member>
+        <member name="P:Google.Apis.Auth.OAuth2.Mvc.AuthorizationCodeMvcApp.FlowData">
+            <summary>Gets the <see cref="T:Google.Apis.Auth.OAuth2.Mvc.FlowMetadata"/> object.</summary>
+        </member>
+        <member name="M:Google.Apis.Auth.OAuth2.Mvc.AuthorizationCodeMvcApp.#ctor(System.Web.Mvc.Controller,Google.Apis.Auth.OAuth2.Mvc.FlowMetadata)">
+            <summary>Constructs a new authorization code MVC app using the given controller and flow data.</summary>
+        </member>
+        <member name="M:Google.Apis.Auth.OAuth2.Mvc.AuthorizationCodeMvcApp.AuthorizeAsync(System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously authorizes the installed application to access user's protected data. It gets the user 
+            identifier by calling to <see cref="M:Google.Apis.Auth.OAuth2.Mvc.FlowMetadata.GetUserId(System.Web.Mvc.Controller)"/> and then calls to
+            <see cref="M:Google.Apis.Auth.OAuth2.Web.AuthorizationCodeWebApp.AuthorizeAsync(System.String,System.Threading.CancellationToken)"/>.
+            </summary>
+            <param name="taskCancellationToken">Cancellation token to cancel an operation</param>
+            <returns>
+            Auth result object which contains the user's credential or redirect URI for the authorization server
+            </returns>
+        </member>
+        <member name="T:Google.Apis.Auth.OAuth2.Mvc.Controllers.AuthCallbackController">
+            <summary>
+            Auth callback to process the authorization code or error response from the authorization redirect page.
+            </summary>
+        </member>
+        <member name="F:Google.Apis.Auth.OAuth2.Mvc.Controllers.AuthCallbackController.Logger">
+            <summary>Logger for this class.</summary>
+        </member>
+        <member name="P:Google.Apis.Auth.OAuth2.Mvc.Controllers.AuthCallbackController.Flow">
+            <summary>Gets the authorization code flow.</summary>
+        </member>
+        <member name="P:Google.Apis.Auth.OAuth2.Mvc.Controllers.AuthCallbackController.UserId">
+            <summary>
+            Gets the user identifier. Potential logic is to use session variables to retrieve that information.
+            </summary>
+        </member>
+        <member name="P:Google.Apis.Auth.OAuth2.Mvc.Controllers.AuthCallbackController.FlowData">
+            <summary>Gets the flow data which contains </summary>
+        </member>
+        <member name="M:Google.Apis.Auth.OAuth2.Mvc.Controllers.AuthCallbackController.OnTokenError(Google.Apis.Auth.OAuth2.Responses.TokenErrorResponse)">
+            <summary>
+            A callback which gets the error when this controller didn't receive an authorization code. The default 
+            implementation throws a <see cref="T:Google.Apis.Auth.OAuth2.Responses.TokenResponseException"/>.
+            </summary>
+        </member>
+        <member name="M:Google.Apis.Auth.OAuth2.Mvc.Controllers.AuthCallbackController.IndexAsync(Google.Apis.Auth.OAuth2.Responses.AuthorizationCodeResponseUrl,System.Threading.CancellationToken)">
+            <summary>
+            The authorization callback which receives an authorization code which contains an error or a code.
+            If a code is available the method exchange the coed with an access token and redirect back to the original
+            page which initialized the auth process (using the state parameter).
+            <para>
+            The current timeout is set to 10 seconds. You can change the default behavior by setting 
+            <see cref="T:System.Web.Mvc.AsyncTimeoutAttribute"/> with a different value on your controller.
+            </para>
+            </summary>
+            <param name="authorizationCode">Authorization code response which contains the code or an error.</param>
+            <param name="taskCancellationToken">Cancellation token to cancel operation.</param>
+            <returns>
+            Redirect action to the state parameter or <see cref="M:Google.Apis.Auth.OAuth2.Mvc.Controllers.AuthCallbackController.OnTokenError(Google.Apis.Auth.OAuth2.Responses.TokenErrorResponse)"/> in case of an error.
+            </returns>
+        </member>
+        <member name="T:Google.Apis.Auth.OAuth2.Mvc.Filters.AuthorizationCodeActionFilter">
+            <summary>
+            An action filter which parses the query parameters into
+            <see cref="T:Google.Apis.Auth.OAuth2.Responses.AuthorizationCodeResponseUrl"/>.
+            </summary>
+        </member>
+        <member name="M:Google.Apis.Auth.OAuth2.Mvc.Filters.AuthorizationCodeActionFilter.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            Parses the request into <see cref="T:Google.Apis.Auth.OAuth2.Responses.AuthorizationCodeResponseUrl"/>.
+            </summary>
+        </member>
+        <member name="T:Google.Apis.Auth.OAuth2.Mvc.Filters.AuthExtensions">
+            <summary>Auth extensions methods.</summary>
+        </member>
+        <member name="M:Google.Apis.Auth.OAuth2.Mvc.Filters.AuthExtensions.ParseRequest(Google.Apis.Auth.OAuth2.Responses.AuthorizationCodeResponseUrl,System.Web.HttpRequestBase)">
+            <summary>Parses the HTTP request query parameters into the Authorization code response.</summary>
+        </member>
+        <member name="T:Google.Apis.Auth.OAuth2.Mvc.FlowMetadata">
+            <summary>
+            Flow metadata abstract class which contains the reference to the
+            <see cref="T:Google.Apis.Auth.OAuth2.Flows.IAuthorizationCodeFlow"/> and
+            method to get the user identifier.
+            </summary>
+        </member>
+        <member name="M:Google.Apis.Auth.OAuth2.Mvc.FlowMetadata.GetUserId(System.Web.Mvc.Controller)">
+            <summary>
+            Gets the user identifier.
+            </summary>
+            <param name="controller">The controller</param>
+            <returns>User identifier</returns>
+        </member>
+        <member name="P:Google.Apis.Auth.OAuth2.Mvc.FlowMetadata.Flow">
+            <summary>Gets the authorization code flow.</summary>
+        </member>
+        <member name="P:Google.Apis.Auth.OAuth2.Mvc.FlowMetadata.AuthCallback">
+            <summary>
+            Gets the authorization application's call back. That relative URL will handle the authorization code 
+            response.
+            </summary>
+        </member>
+    </members>
+</doc>

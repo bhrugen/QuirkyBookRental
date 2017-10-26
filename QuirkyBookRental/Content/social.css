@@ -1,0 +1,23 @@
+﻿.btn-facebook{
+    color:#fff;
+    background-color:#3b5998;
+    border-color:rgba(0,0,0,0.2)
+}
+
+.btn-facebook:hover {
+    color: #fff;
+    background-color: #2d4373;
+    border-color: rgba(0,0,0,0.2)
+}
+
+.btn-google {
+    color: #fff;
+    background-color: #dd4b39;
+    border-color: rgba(0,0,0,0.2)
+}
+
+    .btn-google:hover {
+        color: #fff;
+        background-color: #c23321;
+        border-color: rgba(0,0,0,0.2)
+    }
