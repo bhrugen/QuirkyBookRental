@@ -107,7 +107,7 @@ namespace QuirkyBookRental.Controllers
 
             db.SaveChanges();
 
-            return RedirectToAction("Index", "Users");
+            return RedirectToAction("Index", "User");
         }
 
 
@@ -159,7 +159,7 @@ namespace QuirkyBookRental.Controllers
         //DELETE Post method
         [HttpPost,ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult UsersDeletePost(string id)
+        public ActionResult DeleteConfirmed(string id)
         {
             var userInDb = db.Users.Find(id);
             if (id == null || id.Length ==0)
@@ -169,7 +169,7 @@ namespace QuirkyBookRental.Controllers
 
             userInDb.Disable = true;
             db.SaveChanges();
-            return View();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

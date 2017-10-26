@@ -1,0 +1,70 @@
+﻿@model QuirkyBookRental.ViewModel.UserViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h3>User Details</h3>
+    <hr />
+    <div class="form-border">
+        <fieldset disabled>
+            <div class="row" style="padding-bottom:5px;padding-top:5px;">
+                <div class="col-md-2">
+                    @Html.LabelFor(m => m.FirstName, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row" style="padding-bottom:5px;padding-top:5px;">
+                <div class="col-md-2">
+                    @Html.LabelFor(m => m.LastName, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row" style="padding-bottom:5px;padding-top:5px;">
+                <div class="col-md-2">
+                    @Html.LabelFor(m => m.Phone, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row" style="padding-bottom:5px;padding-top:5px;">
+                <div class="col-md-2">
+                    @Html.LabelFor(m => m.BirthDate, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.BirthDate,"{0:MMM dd yyyy}", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row" style="padding-bottom:5px;padding-top:5px;">
+                <div class="col-md-2">
+                    @Html.LabelFor(m => m.MembershipTypeId, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.MembershipTypeId, new SelectList(Model.MembershipTypes, "id", "name"), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row" style="padding-bottom:5px;padding-top:5px;">
+                <div class="col-md-2">
+                    @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+            </div>
+        </fieldset>
+        </div>
+    </div>
+
+<br />
+<p>
+    @Html.Partial("_BackToListButtonPartial")
+    <a type="button" class="btn btn-sm btn-primary" href="@Url.Action("Edit", new { id=Model.Id })">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span>Edit</span>
+    </a>
+</p>
