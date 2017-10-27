@@ -146,3 +146,7 @@ C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\obj\Debug\Quirky
 C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\bin\System.Web.Http.WebHost.dll
 C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\bin\System.Web.Http.WebHost.xml
 C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBookRental.Migrations.updateEndDate.resources
+C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\bin\PagedList.dll
+C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\bin\PagedList.Mvc.dll
+C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\bin\PagedList.xml
+C:\Users\bhrug\Desktop\Quirky\QuirkyBookRental\QuirkyBookRental\bin\PagedList.Mvc.xml
