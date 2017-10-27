@@ -1,0 +1,115 @@
+﻿@model QuirkyBookRental.ViewModel.BookRentalViewModel
+
+@{
+    ViewBag.Title = "Decline";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken();
+   
+    <fieldset disabled>
+        <h2>Decline</h2>
+        <div class="row" style="border:1px solid #bbb9b9; border-radius:5px;">
+            <div class="col-sm-10">
+                <div class="row" style="padding-bottom:5px;padding-top:25px;">
+                    <div class="col-sm-3">
+                        @Html.LabelFor(m => m.ISBN, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.ISBN, new { @class = "form-control", enabled = "false" })
+                    </div>
+                </div>
+
+                <div class="row" style="padding-bottom:5px;padding-top:25px;">
+                    <div class="col-sm-3">
+                        @Html.LabelFor(m => m.Title, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", enabled = "false" })
+                    </div>
+                </div>
+
+                <div class="row" style="padding-bottom:5px;padding-top:25px;">
+                    <div class="col-sm-3">
+                        @Html.LabelFor(m => m.RentalPrice, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.RentalPrice, new { @class = "form-control", enabled = "false" })
+                    </div>
+                </div>
+
+                <div class="row" style="padding-bottom:5px;padding-top:25px;">
+                    <div class="col-sm-3">
+                        @Html.LabelFor(m => m.StartDate, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.StartDate, "{0:MM/dd/yyyy}", new { @class = "form-control", enabled = "false" })
+                    </div>
+                </div>
+
+                <div class="row" style="padding-bottom:5px;padding-top:25px;">
+                    <div class="col-sm-3">
+                        @Html.LabelFor(m => m.ScheduledEndDate, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.ScheduledEndDate, "{0:MM/dd/yyyy}", new { @class = "form-control", enabled = "false" })
+                    </div>
+                </div>
+
+                <div class="row" style="padding-bottom:5px;padding-top:25px;">
+                    <div class="col-sm-3">
+                        @Html.LabelFor(m => m.AdditionalCharge, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.AdditionalCharge, new { @class = "form-control", enabled = "false" })
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:5px;padding-top:25px;">
+                    <div class="col-sm-3">
+                        @Html.LabelFor(m => m.RentalDuration, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.RentalDuration, new { @class = "form-control", enabled = "false" })
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:5px;padding-top:25px;">
+                    <div class="col-sm-3">
+                        @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", enabled = "false" })
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:5px;padding-top:25px;">
+                    <div class="col-sm-3">
+                        @Html.LabelFor(m => m.BirthDate, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.BirthDate, "{0:MM/dd/yyyy}", new { @class = "form-control", enabled = "false" })
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:5px;padding-top:25px;">
+                    <div class="col-sm-3">
+                        @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", enabled = "false" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-2">
+                <div class="image-book">
+                    <img class="thumbnail-img" src="@Model.ImageUrl" alt="" style="width:100%;height:auto;" />
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <br />
+    <p>@Html.Partial("_BackToListButtonPartial")
+    <input type="submit" value="Decline" id="btnSubmit" class="btn btn-sm btn-danger" /></p>
+    <br />
+}
+
+

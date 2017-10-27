@@ -277,14 +277,16 @@ namespace QuirkyBookRental.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            if (ModelState.IsValid)
+            {
+                BookRent bookRent = db.BookRental.Find(model.Id);
+                bookRent.Status = BookRent.StatusEnum.Rejected;
 
-            BookRent bookRent = db.BookRental.Find(model.Id);
-            bookRent.Status = BookRent.StatusEnum.Rejected;
-
-            Book bookInDb = db.Books.Find(bookRent.BookId);
-            bookInDb.Avaibility -= 1;
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                Book bookInDb = db.Books.Find(bookRent.BookId);
+                bookInDb.Avaibility += 1;
+                db.SaveChanges();
+            }
+                return RedirectToAction("Index");
         }
 
         private BookRentalViewModel getVMFromBookRent(BookRent bookRent)
