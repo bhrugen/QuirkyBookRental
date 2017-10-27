@@ -182,6 +182,12 @@ namespace QuirkyBookRental.Controllers
             return View(model.ToList().ToPagedList(pageNumber??1,5));
         }
 
+
+
+
+
+
+
         [HttpPost]
         public ActionResult Reserve(BookRentalViewModel book)
         {
@@ -225,6 +231,7 @@ namespace QuirkyBookRental.Controllers
             return View();
         }
 
+
         public ActionResult Details(int? id)
         {
             if(id==null)
@@ -234,12 +241,50 @@ namespace QuirkyBookRental.Controllers
             BookRent bookRent = db.BookRental.Find(id);
 
             var model = getVMFromBookRent(bookRent);
-
             if(model==null)
             {
                 return HttpNotFound();
             }
+
             return View(model);
+        }
+
+        //Decline GET Method
+        public ActionResult Decline(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            BookRent bookRent = db.BookRental.Find(id);
+
+            var model = getVMFromBookRent(bookRent);
+
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Decline(BookRentalViewModel model)
+        {
+            if (model.Id == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            BookRent bookRent = db.BookRental.Find(model.Id);
+            bookRent.Status = BookRent.StatusEnum.Rejected;
+
+            Book bookInDb = db.Books.Find(bookRent.BookId);
+            bookInDb.Avaibility -= 1;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         private BookRentalViewModel getVMFromBookRent(BookRent bookRent)
