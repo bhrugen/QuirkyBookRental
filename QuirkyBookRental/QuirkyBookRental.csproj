@@ -402,6 +402,7 @@
     <Content Include="Views\BookDetail\Index.cshtml" />
     <Content Include="Views\BookRent\Create.cshtml" />
     <Content Include="Views\BookRent\Index.cshtml" />
+    <Content Include="Views\BookRent\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
