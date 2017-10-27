@@ -161,10 +161,53 @@ namespace QuirkyBookRental.Controllers
 
             if(!User.IsInRole(SD.AdminUserRole))
             {
-                model = model.Where(u=>u.UserId.Equals(userid))
+                model = model.Where(u => u.UserId.Equals(userid));
             }
 
             return View(model.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult Reserve(BookRentalViewModel book)
+        {
+            var userid = User.Identity.GetUserId();
+            Book bookToRent = db.Books.Find(book.BookId);
+            double rentalPr = 0;
+
+            if(userid!=null)
+            {
+                var chargeRate = from u in db.Users
+                                 join m in db.MembershipTypes
+                                 on u.MembershipTypeId equals m.Id
+                                 where u.Id.Equals(userid)
+                                 select new { m.ChargeRateOneMonth, m.ChargeRateSixMonth };
+                if (book.RentalDuration == SD.SixMonthCount)
+                {
+                    rentalPr = Convert.ToDouble(bookToRent.Price) * Convert.ToDouble(chargeRate.ToList()[0].ChargeRateSixMonth) / 100;
+                }
+                else
+                {
+                    rentalPr = Convert.ToDouble(bookToRent.Price) * Convert.ToDouble(chargeRate.ToList()[0].ChargeRateOneMonth) / 100;
+                }
+
+                BookRent bookRent = new BookRent
+                {
+                    BookId = bookToRent.Id,
+                    UserId = userid,
+                    RentalDuration = book.RentalDuration,
+                    RentalPrice = rentalPr,
+                    Status = BookRent.StatusEnum.Requested,
+                };
+
+                db.BookRental.Add(bookRent);
+                var bookInDb = db.Books.SingleOrDefault(c=>c.Id == book.BookId);
+
+                bookInDb.Avaibility -= 1;
+
+                db.SaveChanges();
+                return RedirectToAction("Index", "BookRent");
+            }
+            return View();
         }
 
         protected override void Dispose(bool disposing)

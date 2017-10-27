@@ -1,0 +1,130 @@
+﻿@model IEnumerable<QuirkyBookRental.ViewModel.BookRentalViewModel>
+@using QuirkyBookRental.Utility
+@using QuirkyBookRental.Models
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<div class="row">
+    <div class="col-sm-4">
+        <h3>Book Rental Portal</h3>
+        @if(User.IsInRole(SD.AdminUserRole))
+        {
+            <p>
+                @Html.Partial("_CreateButtonPartial")
+            </p>
+        }
+    </div>
+    <div class="col-sm-8 pull-right">
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                @if (User.IsInRole(SD.AdminUserRole))
+                {
+                    <label class="radio-inline">
+                        @Html.RadioButton("option", "name") Name
+                    </label>
+                    <label class="radio-inline">
+                        @Html.RadioButton("option", "email") Email
+                    </label>
+                }
+                <label class="radio-inline">
+                    @Html.RadioButton("option", "status") Status
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pull-right">
+                <button type="submit" name="submit" value="Search" class="btn btn-sm btn-primary">
+                    <span class="glyphicon glyphicon-search"></span> &nbsp; Search
+                </button>
+            </div>
+            <div class="pull-right">
+                @Html.Editor("search",new {  htmlAttributes = new { @class="form-control input-sm"} })
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+<table class="table table-condensed table-hover">
+    <tr class="table-header">
+        <th></th><th></th>
+        <th>
+            @Html.DisplayNameFor(m=>m.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.ScheduledEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.RentalPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.RentalDuration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Status)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+    
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.HiddenFor(m=>item.UserId)
+            </td>
+            <td>
+                @Html.HiddenFor(m => item.BookId)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.ScheduledEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.RentalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.RentalDuration)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Status)
+            </td>
+            <td>
+                @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial {
+                    Action="Details",
+                    ButtonType="btn-success",
+                    Glyph="list",
+                    Text="Details Button",
+                    BookId=null,
+                    CustomerId=null,
+                    GenreId=null,
+                    MembershipTypeId=null,
+                    UserId=null,
+                    BookRentalId=item.Id
+           })
+            </td>
+            <td></td>
+        </tr>
+    }
+</table>
