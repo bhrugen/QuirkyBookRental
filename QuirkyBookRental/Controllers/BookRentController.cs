@@ -290,7 +290,7 @@ namespace QuirkyBookRental.Controllers
                 return RedirectToAction("Index");
         }
 
-        //Decline GET Method
+        //Approve GET Method
         public ActionResult Approve(int? id)
         {
             if (id == null)
@@ -412,6 +412,50 @@ namespace QuirkyBookRental.Controllers
                 Book bookInDb = db.Books.Find(bookRent.BookId);
                 bookInDb.Avaibility += 1;
                 
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
+        //Delete GET Method
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            BookRent bookRent = db.BookRental.Find(id);
+
+            var model = getVMFromBookRent(bookRent);
+
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int Id)
+        {
+            if (Id == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (ModelState.IsValid)
+            {
+                BookRent bookRent = db.BookRental.Find(Id);
+                db.BookRental.Remove(bookRent);
+
+                var bookInDb = db.Books.Where(b => b.Id.Equals(bookRent.BookId)).FirstOrDefault();
+                if(bookRent.Status.ToString().ToLower().Equals("rented"))
+                {
+                    bookInDb.Avaibility += 1;
+                }
                 db.SaveChanges();
             }
             return RedirectToAction("Index");
