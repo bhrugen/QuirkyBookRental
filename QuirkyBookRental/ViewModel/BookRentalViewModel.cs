@@ -1,4 +1,5 @@
 ﻿using QuirkyBookRental.Models;
+using QuirkyBookRental.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -80,5 +81,25 @@ namespace QuirkyBookRental.ViewModel
         [DisplayFormat(DataFormatString = "{0:MMM dd yyyy}")]
         public DateTime? BirthDate { get; set; }
 
+
+        public string actionName
+        {
+            get
+            {
+                if(Status.ToLower().Contains(SD.RequestedLower))
+                {
+                    return "Approve";
+                }
+                if (Status.ToLower().Contains(SD.ApprovedLower))
+                {
+                    return "PickUp";
+                }
+                if (Status.ToLower().Contains(SD.RentedLower))
+                {
+                    return "Return";
+                }
+                return null;
+            }
+        }
     }
 }
