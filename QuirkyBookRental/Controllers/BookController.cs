@@ -8,13 +8,16 @@ using System.Web;
 using System.Web.Mvc;
 using QuirkyBookRental.Models;
 using QuirkyBookRental.ViewModel;
+using QuirkyBookRental.Utility;
 
 namespace QuirkyBookRental.Controllers
 {
+    [Authorize(Roles = SD.AdminUserRole)]
     public class BookController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        
         // GET: Book
         public ActionResult Index()
         {
@@ -22,6 +25,7 @@ namespace QuirkyBookRental.Controllers
             return View(books.ToList());
         }
 
+        
         // GET: Book/Details/5
         public ActionResult Details(int? id)
         {

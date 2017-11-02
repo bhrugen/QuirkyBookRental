@@ -12,6 +12,7 @@ using System.Net;
 
 namespace QuirkyBookRental.Controllers
 {
+    [Authorize]
     public class BookRentController : Controller
     {
         private ApplicationDbContext db;

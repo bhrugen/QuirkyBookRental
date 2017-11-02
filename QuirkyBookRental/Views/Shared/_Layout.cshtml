@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using QuirkyBookRental.Utility
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,12 +19,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Quirky Book Rental", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Rental Status","Index","BookRent")</li>
-                   @Html.Partial("_AdminMenuPartial")
+                    @if (User.IsInRole(SD.AdminUserRole))
+                    {
+                        @Html.Partial("_AdminMenuPartial")
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
