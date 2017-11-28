@@ -75,36 +75,6 @@ namespace QuirkyBookRental.Controllers
                     rentalPr = oneMonthRental;
                 }
 
-                BookRentalViewModel model = new BookRentalViewModel
-                {
-                    BookId = bookSelected.Id,
-                    RentalPrice = rentalPr,
-                    Price = bookSelected.Price,
-                    Pages = bookSelected.Pages,
-                    FirstName = userDetails.ToList()[0].FirstName,
-                    LastName = userDetails.ToList()[0].LastName,
-                    BirthDate = userDetails.ToList()[0].BirthDate,
-                    ScheduledEndDate = bookRent.ScheduledEndDate,
-                    Author = bookSelected.Author,
-                    Avaibility = bookSelected.Avaibility,
-                    DateAdded = bookSelected.DateAdded,
-                    Description = bookSelected.Description,
-                    Email = email,
-                    GenreId = bookRent.GenreId,
-                    Genre = db.Genres.Where(g => g.Id.Equals(bookSelected.GenreId)).First(),
-                    ISBN = bookSelected.ISBN,
-                    ImageUrl = bookSelected.ImageUrl,
-                    ProductDimensions = bookSelected.ProductDimensions,
-                    PublicationDate = bookSelected.PublicationDate,
-                    Publisher = bookSelected.Publisher,
-                    RentalDuration = bookRent.RentalDuration,
-                    Status = BookRent.StatusEnum.Requested.ToString(),
-                    Title = bookSelected.Title,
-                    UserId = userDetails.ToList()[0].Id,
-                    RentalPriceOneMonth = oneMonthRental,
-                    RentalPriceSixMonth = sixMonthRental
-                };
-
                 BookRent modelToAddToDb = new BookRent
                 {
                     BookId = bookSelected.Id,

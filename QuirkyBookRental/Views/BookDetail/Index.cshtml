@@ -12,9 +12,9 @@
     <div class="row">
         @* Book Image *@
         <div class="col-sm-3 col-xs-4 image-book">
-            <img class="thumbnail-img" src="@Model.ImageUrl" alt="" style="width:100%;height:auto;padding:10px;"/>
+            <img class="thumbnail-img" src="@Model.ImageUrl" alt="" style="width:100%;height:auto;padding:10px;" />
         </div>
-         
+
 
         @* Book Details(Title/Author/Description) *@
         <div class="col-sm-6 col-xs-8 content-book-main">
@@ -46,85 +46,77 @@
                     });
                 }
 
-                @if(Model.RentalPriceOneMonth !=0 && Model.RentalPriceSixMonth!=0)
+                @if (Model.RentalPriceOneMonth != 0 && Model.RentalPriceSixMonth != 0)
                 {
                     //User has logged in and they are not admin
-                
+
                     <div class="form-control" style="height:350px;">
                         <div class="input-group" style="height:30px">
-                                    <label>MSRP:</label>
-                                    <label id="lblMSRP" style="font-weight:normal;">$@(Model.Price)</label><br />
-                                </div>
-                                <hr />
-                                <div class="input-group" style="height:90px;">
-                                    <label>Rental Price : </label><br />
-                                    <label id="lblOneMonth" style="font-weight:normal;">One Month : $@(Model.RentalPriceOneMonth)</label>
-                                    <br />
-                                    <label id="lblOneMonth" style="font-weight:normal;">Six Months : $@(Model.RentalPriceSixMonth)</label>
-                                </div>
-                                <br />
-                                <label>Select your rental duration : </label><br />
-                                @Html.DropDownListFor(m => m.RentalDuration, listItem, new { @class = "form-control" })
-                                <span style="font-size:12px;">Reserve before 3pm for same day pickup.<br /><br /></span>
+                            <label>MSRP:</label>
+                            <label id="lblMSRP" style="font-weight:normal;">$@(Model.Price)</label><br />
+                        </div>
+                        <hr />
+                        <div class="input-group" style="height:90px;">
+                            <label>Rental Price : </label><br />
+                            <label id="lblOneMonth" style="font-weight:normal;">One Month : $@(Model.RentalPriceOneMonth)</label>
+                            <br />
+                            <label id="lblOneMonth" style="font-weight:normal;">Six Months : $@(Model.RentalPriceSixMonth)</label>
+                        </div>
+                        <br />
+                        <label>Select your rental duration : </label><br />
+                        @Html.DropDownListFor(m => m.RentalDuration, listItem, new { @class = "form-control" })
+                        <span style="font-size:12px;">Reserve before 3pm for same day pickup.<br /><br /></span>
 
-                                @if (Model.Avaibility > 0)
-                                {
-                                    <button type="submit" class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;Reserve
-                                    </button>
-                                }
-                                else
-                                {
-                                    <button type="submit" class="btn btn-danger" disabled="disabled">
-                                        <span class="glyphicon glyphicon-thumbs-down"></span>&nbsp;Unavailable
-                                    </button>
-                                }
-                            </div>
+                        @if (Model.Avaibility > 0)
+                        {
+                            <button type="submit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;Reserve
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-danger" disabled="disabled">
+                                <span class="glyphicon glyphicon-thumbs-down"></span>&nbsp;Unavailable
+                            </button>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="form-control" style="height:150px;">
+                        <div class="input-group" style="height:30px;">
+                            <label>MSRP:</label>
+                            <label id="lblMSRP" style="font-weight:normal;">$@(Model.Price)</label><br />
+                        </div>
+                        <hr />
+
+                        @if (User.IsInRole(SD.AdminUserRole) && Model.Avaibility > 0)
+                        {
+                            //Admin user with Create button
+                            @Html.ActionLink("Create Rental", "Create", "BookRent",
+                                new { isbn = Model.ISBN, title = Model.Title }, new { @class = "btn btn-primary" })
+                        }
+                        else
+                        {
+                            if (User.IsInRole(SD.AdminUserRole) && Model.Avaibility == 0)
+                            {
+                                //Admin user with book not available
+                                <button type="submit" class="btn btn-danger" disabled>
+                                    <span class="glyphicon glyphicon-thumbs-down"></span>Unavailable
+                                </button>
                             }
                             else
                             {
-                            <div class="form-control" style="height:150px;">
-                                <div class="input-group" style="height:30px;">
-                                    <label>MSRP:</label>
-                                    <label id="lblMSRP" style="font-weight:normal;">$@(Model.Price)</label><br />
-                                </div>
-                                <hr />
-
-                                @if (User.IsInRole(SD.AdminUserRole) && Model.Avaibility > 0)
-                                {
-                                    //Admin user with Create button
-                                    @Html.ActionLink("Create Rental", "Create", "BookRent",
-                                new { isbn = Model.ISBN, title = Model.Title }, new { @class = "btn btn-primary" })
-                                }
-                                else
-                                {
-                                    if (User.IsInRole(SD.AdminUserRole) && Model.Avaibility == 0)
-                                    {
-                                        //Admin user with book not available
-                                        <button type="submit" class="btn btn-danger" disabled>
-                                            <span class="glyphicon glyphicon-thumbs-down"></span>Unavailable
-                                        </button>
-                                    }
-                                    else
-                                    {
-                                        //User not logged in
-                                        <span>Login to unlock the rental price!</span>
-                                    }
-                                }
-                            </div>
+                                //User not logged in
+                                <span>Login to unlock the rental price!</span>
                             }
-                        </div>
+                        }
+                    </div>
+                }
+            </div>
 
 
             <h4 class="product-details-heading">Product Details</h4>
-            <dl>
-                <dt>
-                    @Html.DisplayNameFor(m=>m.ISBN)
-                </dt>
-                <dd>
-                    &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m=>m.ISBN)
-                </dd>
-                </dl>
             <dl>
                 <dt>
                     @Html.DisplayNameFor(m => m.ISBN)
@@ -174,8 +166,8 @@
                 </dd>
             </dl>
 
-            @Html.HiddenFor(m=>m.BookId)
+            @Html.HiddenFor(m => m.BookId)
 
         </div>
     </div>
-}
+                    }
