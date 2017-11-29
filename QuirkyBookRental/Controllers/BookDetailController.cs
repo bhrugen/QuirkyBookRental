@@ -30,16 +30,17 @@ namespace QuirkyBookRental.Controllers
             var rentalPrice = 0.0;
             var oneMonthRental = 0.0;
             var sixMonthRental = 0.0;
-
+            var rentalCount = 0;
             if(userid !=null && !User.IsInRole(SD.AdminUserRole))
             {
                 var chargeRate = from u in db.Users
                                  join m in db.MembershipTypes on u.MembershipTypeId equals m.Id
                                  where u.Id.Equals(userid)
-                                 select new { m.ChargeRateOneMonth, m.ChargeRateSixMonth };
+                                 select new { m.ChargeRateOneMonth, m.ChargeRateSixMonth,u.RentalCount };
 
                 oneMonthRental = Convert.ToDouble(bookModel.Price) * Convert.ToDouble(chargeRate.ToList()[0].ChargeRateOneMonth)/100;
                 sixMonthRental = Convert.ToDouble(bookModel.Price) * Convert.ToDouble(chargeRate.ToList()[0].ChargeRateSixMonth) / 100;
+                rentalCount =  Convert.ToInt32(chargeRate.ToList()[0].RentalCount);
             }
 
             BookRentalViewModel model = new BookRentalViewModel
@@ -62,7 +63,8 @@ namespace QuirkyBookRental.Controllers
                 UserId = userid,
                 RentalPrice=rentalPrice,
                 RentalPriceOneMonth=oneMonthRental,
-                RentalPriceSixMonth=sixMonthRental
+                RentalPriceSixMonth=sixMonthRental,
+                RentalCount=rentalCount
                 
             };
 

@@ -80,7 +80,7 @@ namespace QuirkyBookRental.ViewModel
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MMM dd yyyy}")]
         public DateTime? BirthDate { get; set; }
-
+        public int RentalCount { get; set; }
 
         public string actionName
         {

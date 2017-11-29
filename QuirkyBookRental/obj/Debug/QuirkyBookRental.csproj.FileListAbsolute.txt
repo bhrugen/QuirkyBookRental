@@ -302,3 +302,4 @@ C:\Users\bhrug\Desktop\Code\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBo
 C:\Users\bhrug\Desktop\Code\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBookRental.csproj.CoreCompileInputs.cache
 C:\Users\bhrug\Desktop\Code\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBookRental.dll
 C:\Users\bhrug\Desktop\Code\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBookRental.pdb
+C:\Users\bhrug\Desktop\Code\QuirkyBookRental\QuirkyBookRental\obj\Debug\QuirkyBookRental.Migrations.addRentalCountToUsers.resources

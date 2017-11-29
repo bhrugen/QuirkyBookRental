@@ -75,8 +75,11 @@
                 @Html.LabelFor(model => model.RentalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.Label(" ", new { id = "lblRentalPrice", style = "width:350px;", @class = "form-control" })
+                    
+                    @Html.Label("Discounted Rate", new { id = "lblDiscountDisplay", style = "width:350px;color:green;display:none;" })
                 </div>
             </div>
+           
             <div class="form-group">
                 @Html.LabelFor(model => model.Avaibility, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -140,7 +143,7 @@
             var isbn = document.getElementById("bookISBN").value;
             var email = document.getElementById("email").value;
             var rentalDuration = document.getElementById("ddlRentalDuration").value;
-
+            var rentalPrice = 0.0;
             $.ajax({
                 url: '/api/BookAPI?type=avail&isbn=' + isbn,
                 type: 'GET',
@@ -171,6 +174,7 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function (data, textStatus, xhr) {
+                    rentalPrice = data;
                     $('#lblRentalPrice').text(data)
                 },
                 error: function (xhr, textStatus, errorThrown) {
@@ -183,20 +187,28 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function (data, textStatus, xhr) {
-                    var fields = data.split(';');
+                    var fields = data.split(';')
 
-                    $('#firstName').text(fields[0])
+                    $('#firstName').text(fields[0]);
 
-                    var birthDate = fields[1].split(' ')
+                    var birthDate = fields[1].split(' ');
                     $('#birthDate').text(birthDate[0])
                     document.getElementById("btnAvailibility").style.display = 'none';
                     document.getElementById("nameAndDob").style.display = '';
+                    var rentalCount = fields[2];
+                    if (rentalCount == 10)
+                    {
+                        $('#lblRentalPrice').text(rentalPrice - (rentalPrice * 20 / 100));
+                        document.getElementById("lblDiscountDisplay").style.display = '';
+                    }
 
                 },
                 error: function (xhr, textStatus, errorThrown) {
 
                 }
             });
+
+            
 
         });
     </script>

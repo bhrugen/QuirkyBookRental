@@ -74,7 +74,12 @@ namespace QuirkyBookRental.Controllers
                 {
                     rentalPr = oneMonthRental;
                 }
-
+                var userInDb = db.Users.SingleOrDefault(u => u.Email == email);
+                if (userInDb.RentalCount == 10)
+                {
+                    userInDb.RentalCount++;
+                    rentalPr = rentalPr - (rentalPr * 20 / 100);
+                }
                 BookRent modelToAddToDb = new BookRent
                 {
                     BookId = bookSelected.Id,
@@ -87,6 +92,8 @@ namespace QuirkyBookRental.Controllers
 
                 bookSelected.Avaibility -= 1;
                 db.BookRental.Add(modelToAddToDb);
+
+                
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -167,7 +174,7 @@ namespace QuirkyBookRental.Controllers
             Book bookToRent = db.Books.Find(book.BookId);
             double rentalPr = 0;
 
-            if(userid!=null)
+            if (userid != null)
             {
                 var chargeRate = from u in db.Users
                                  join m in db.MembershipTypes
@@ -182,7 +189,12 @@ namespace QuirkyBookRental.Controllers
                 {
                     rentalPr = Convert.ToDouble(bookToRent.Price) * Convert.ToDouble(chargeRate.ToList()[0].ChargeRateOneMonth) / 100;
                 }
-
+                var userInDb = db.Users.SingleOrDefault(c => c.Id == userid);
+                if (userInDb.RentalCount == 10)
+                {
+                    userInDb.RentalCount++;
+                    rentalPr = rentalPr - (rentalPr * 20 / 100);
+                }
                 BookRent bookRent = new BookRent
                 {
                     BookId = bookToRent.Id,
@@ -190,11 +202,12 @@ namespace QuirkyBookRental.Controllers
                     RentalDuration = book.RentalDuration,
                     RentalPrice = rentalPr,
                     Status = BookRent.StatusEnum.Requested,
+
                 };
 
                 db.BookRental.Add(bookRent);
-                var bookInDb = db.Books.SingleOrDefault(c=>c.Id == book.BookId);
-
+                var bookInDb = db.Books.SingleOrDefault(c => c.Id == book.BookId);
+                
                 bookInDb.Avaibility -= 1;
 
                 db.SaveChanges();
@@ -253,7 +266,11 @@ namespace QuirkyBookRental.Controllers
             {
                 BookRent bookRent = db.BookRental.Find(model.Id);
                 bookRent.Status = BookRent.StatusEnum.Rejected;
-
+                var userInDb = db.Users.SingleOrDefault(c => c.Id == bookRent.UserId);
+                if (userInDb.RentalCount == 11)
+                {
+                    userInDb.RentalCount--;
+                }
                 Book bookInDb = db.Books.Find(bookRent.BookId);
                 bookInDb.Avaibility += 1;
                 db.SaveChanges();
@@ -381,6 +398,17 @@ namespace QuirkyBookRental.Controllers
 
                 bookRent.AdditionalCharge = model.AdditionalCharge;
                 Book bookInDb = db.Books.Find(bookRent.BookId);
+
+                var userInDb = db.Users.Single(u => u.Id == bookRent.UserId);
+                if (userInDb.RentalCount == 11)
+                {
+                    userInDb.RentalCount = 0;
+                }
+                else
+                {
+                    userInDb.RentalCount++;
+                }
+
                 bookInDb.Avaibility += 1;
                 
                 db.SaveChanges();
@@ -423,9 +451,19 @@ namespace QuirkyBookRental.Controllers
                 db.BookRental.Remove(bookRent);
 
                 var bookInDb = db.Books.Where(b => b.Id.Equals(bookRent.BookId)).FirstOrDefault();
-                if(bookRent.Status.ToString().ToLower().Equals("rented"))
+                var userInDb = db.Users.SingleOrDefault(c => c.Id == bookRent.UserId);
+
+                if (bookRent.Status.ToString().ToLower().Equals("rented"))
                 {
                     bookInDb.Avaibility += 1;
+                }
+                else
+                {
+                    //This else would be called in all scenarios except when user has a book with them and never returns
+                    if (userInDb.RentalCount == 11)
+                    {
+                        userInDb.RentalCount--;
+                    }
                 }
                 db.SaveChanges();
             }

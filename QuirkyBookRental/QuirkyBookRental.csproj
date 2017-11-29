@@ -280,6 +280,10 @@
     <Compile Include="Migrations\201710262151331_updateEndDate.Designer.cs">
       <DependentUpon>201710262151331_updateEndDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711280025454_addRentalCountToUsers.cs" />
+    <Compile Include="Migrations\201711280025454_addRentalCountToUsers.Designer.cs">
+      <DependentUpon>201711280025454_addRentalCountToUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book.cs" />
@@ -444,6 +448,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710262151331_updateEndDate.resx">
       <DependentUpon>201710262151331_updateEndDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711280025454_addRentalCountToUsers.resx">
+      <DependentUpon>201711280025454_addRentalCountToUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -56,12 +56,32 @@
                             <label id="lblMSRP" style="font-weight:normal;">$@(Model.Price)</label><br />
                         </div>
                         <hr />
-                        <div class="input-group" style="height:90px;">
+
+
+                       
+
+                        @if (Model.RentalCount == 10)
+                        {
+                        <div id="divDiscountPrice" class="input-group" style="height:90px;">
                             <label>Rental Price : </label><br />
-                            <label id="lblOneMonth" style="font-weight:normal;">One Month : $@(Model.RentalPriceOneMonth)</label>
+                            <label id="lblOneMonth" style="font-weight:normal;">One Month :<strike>$@(Model.RentalPriceOneMonth)</strike> </label>
+                            <label id="lblOneMonth" style="font-weight:normal;color:green;">$@(Model.RentalPriceOneMonth - (Model.RentalPriceOneMonth * 20 / 100)) </label>
                             <br />
-                            <label id="lblOneMonth" style="font-weight:normal;">Six Months : $@(Model.RentalPriceSixMonth)</label>
+                            <label id="lblOneMonth" style="font-weight:normal;">Six Months : <strike>$@(Model.RentalPriceSixMonth)</strike></label>
+                            <label id="lblOneMonth" style="font-weight:normal;color:green;">$@(Model.RentalPriceSixMonth - (Model.RentalPriceSixMonth * 20 / 100)) </label>
+                            <label id="lblDiscount" style="font-size:12px;font-weight:normal;color:green;">Discount on every 11th book rental!</label>
+
                         </div>
+                        }
+                        else
+                        {
+                            <div id="divRegularPrice" class="input-group" style="height:90px;">
+                                <label>Rental Price : </label><br />
+                                <label id="lblOneMonth" style="font-weight:normal;">One Month : $@(Model.RentalPriceOneMonth)</label>
+                                <br />
+                                <label id="lblOneMonth" style="font-weight:normal;">Six Months : $@(Model.RentalPriceSixMonth)</label>
+                            </div>
+                        }
                         <br />
                         <label>Select your rental duration : </label><br />
                         @Html.DropDownListFor(m => m.RentalDuration, listItem, new { @class = "form-control" })
